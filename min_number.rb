@@ -35,3 +35,18 @@ end
 
 #вывод результатов 
 puts "min: #{min(array)}","max: #{ max(array)}", "номер первого положительного элемента: #{positiv_number(array)+1}"
+
+#выбор метода
+puts "Выбирете 1-min, 2-max, 3-номер первого положительного элемента"
+metod=gets.chomp
+file_path =gets.chomp
+
+array_file = File.readlines(file_path).map(&:to_i)
+
+if metod == '1'
+  puts "min: #{min(array_file)}"
+elsif metod == '2'
+  puts "max: #{max(array_file)}"
+else
+  puts "номер первого положительного элемента: #{positiv_number(array_file )+1}"
+end
