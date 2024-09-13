@@ -29,7 +29,28 @@ def max_figure(number)
   max
 end
 
+def sum_figure(num)
+  sum=0
+  until num==0
+    sum=sum+(num%10)
+    num=num/10
+  end
+  sum
+end
+
+# Поиск не взоимно простого числа
+def even(number, range)
+  max= 0
+  range.each do |num|
+    if num>max && gcd(number, num)==1  && sum_figure(num)<5
+      max=num
+    end
+  end
+  max*number
+end
+
 # Диапазон чисел
 range = (1..15)   
 puts "Количество четных чисел в диапазоне от 1 до 15, не взаимно простых с #{6}: #{count_even(6, range)}"
 puts "максимальная цифра 25874236974, не делящуюся на 3: #{max_figure(25874236974)}"
+puts "произведение максимального числа, не взаимно простого с 6, не делящегося на наименьший делитель исходно числа, и суммы цифр числа, меньших 5: #{even(6, range)}"
