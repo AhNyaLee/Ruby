@@ -25,7 +25,7 @@ def max(array)
 end
 
 #номер первого положительного элемента
-def positiv_number(array)
+def first_positiv_number(array)
   for i in 0..array.length-1
     if array[i]>0 then
       return i
@@ -34,7 +34,7 @@ def positiv_number(array)
 end
 
 #вывод результатов 
-puts "min: #{min(array)}","max: #{ max(array)}", "номер первого положительного элемента: #{positiv_number(array)+1}"
+puts "min: #{min(array)}","max: #{ max(array)}", "номер первого положительного элемента: #{first_positiv_number(array)+1}"
 
 #выбор метода
 puts "Выбирете 1-min, 2-max, 3-номер первого положительного элемента"
@@ -48,5 +48,5 @@ if metod == '1'
 elsif metod == '2'
   puts "max: #{max(array_file)}"
 else
-  puts "номер первого положительного элемента: #{positiv_number(array_file )+1}"
+  puts "номер первого положительного элемента: #{first_positiv_number(array_file )+1}"
 end
