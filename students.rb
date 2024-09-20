@@ -8,7 +8,7 @@ class Student
     @name = information[:name]
     @patronymic =information [:patronymic]
     @group=information[:group]
-    @nomber_phone =information[:nomber_phone]
+    self.valid_namber =information[:nomber_phone]
     @telegram = information[:telegram]
     @email = information[:email]
     @git =information[:git] 
@@ -29,11 +29,19 @@ class Student
     "#{@surname} #{@name} #{@patronymic}"
   end  
   
+  def valid_namber=(nomber_phone)
+    if nomber_phone.match?(/^\d{11}$/)==true
+      @nomber_phone = nomber_phone
+    else 
+      @nomber_phone=nil
+    end  
+  end  
+
   #Вывод всех данных о студенте на экран
   def print_info
     puts ("\nID студента: #{@id}\nФИО: #{full_name} ")
     puts ("Номер руппы: #{@group}")if @nomber_phone
-    puts ("Номер телефон: #{@nomber_phone}") if @nomber_phone  
+    puts ("Номер телефона: #{@nomber_phone}")if @nomber_phone  
     puts ("Телеграмм: #{@telegram}") if @telegram 
     puts ("Пчота: #{@email}") if @email 
     puts ("Гит: #{@git}") if @git 

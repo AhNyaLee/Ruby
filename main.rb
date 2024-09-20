@@ -7,7 +7,7 @@ ann=Student.new(
   name:"Аня",
   patronymic: "Владимировна",
   group: "39",
-  nomber_phone: "89182188064"
+  nomber_phone: "g82188064"
 )
 
 nastia=Student.new(
@@ -24,4 +24,3 @@ nastia=Student.new(
 
 ann.print_info
 nastia.print_info
-
