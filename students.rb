@@ -1,7 +1,7 @@
 #создаём класс
 class Student
-  attr_accessor :id, :surname, :name, :patronymic, :number_phone, :telegram, :email, :git
-
+  attr_accessor :id, :surname, :name, :patronymic, :git
+  attr_reader :number_phone, :telegram, :email
   #конструктор класса
   def initialize(information={})
   self.valid_id = information[:id] if information[:id]
@@ -14,7 +14,6 @@ class Student
   self.valid_email = information[:email] if information[:email]
   self.valid_git = information[:git] if information[:git]
 end
-
  
   #метод set для групп
   def set_group=(new_group)
@@ -25,6 +24,13 @@ end
   def get_group
     @group
   end  
+
+  #устанавливает значения поля или полей для введенных контактов
+  def set_contacts(number_phone: nil, telegram: nil, email: nil)
+    self.valid_number = number_phone if number_phone
+    self.valid_telegram = telegram if telegram
+    self.valid_email = email if email
+  end
 
   #запись ФИО(модифицировала класс)
   def full_name

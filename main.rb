@@ -1,18 +1,16 @@
 require_relative 'students'
 
-
 ann=Student.new(
   id: "12",
   surname: "Логвина",
   name:"Аня",
   patronymic: "Владимировна",
-  number_phone: "89182188064",
-  email: "example@mail.com"
+  number_phone: "89182188064"
 
 )
 
 nastia=Student.new(
-  id: "12",
+  id: "13",
   surname: "Нещадимова",
   name:"Настя",
   patronymic: "Александровна",
@@ -25,3 +23,5 @@ nastia=Student.new(
 
 ann.print_info
 nastia.print_info
+ann.set_contacts(number_phone: nil, telegram: nil, email: "new_email@example.com")
+ann.print_info
