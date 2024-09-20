@@ -2,16 +2,16 @@ class Student
   attr_accessor :id, :surname, :name, :patronymic, :nomber_phone, :telegram, :email, :git
 
   #конструктор класса
-  def initialize(id:nil, surname:, name:, patronymic:,group:,nomber_phone:nil, telegram: nil, email: nil, git:nil)
-    @id = id
-    @surname = surname
-    @name = name
-    @patronymic = patronymic
-    @group=group
-    @nomber_phone = nomber_phone
-    @telegram = telegram
-    @email = email
-    @git = git
+  def initialize(information={})
+    @id = information[:id]
+    @surname =information[:surname] 
+    @name = information[:name]
+    @patronymic =information [:patronymic]
+    @group=information[:group]
+    @nomber_phone =information[:nomber_phone]
+    @telegram = information[:telegram]
+    @email = information[:email]
+    @git =information[:git] 
   end
  
   #метод set для групп
@@ -24,6 +24,7 @@ class Student
     @group
   end  
 
+  #запись ФИО(модифицировала класс)
   def full_name
     "#{@surname} #{@name} #{@patronymic}"
   end  
@@ -31,7 +32,7 @@ class Student
   #Вывод всех данных о студенте на экран
   def print_info
     puts ("\nID студента: #{@id}\nФИО: #{full_name} ")
-    puts ("Номер руппы: #{@group}")
+    puts ("Номер руппы: #{@group}")if @nomber_phone
     puts ("Номер телефон: #{@nomber_phone}") if @nomber_phone  
     puts ("Телеграмм: #{@telegram}") if @telegram 
     puts ("Пчота: #{@email}") if @email 
