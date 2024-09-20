@@ -1,6 +1,6 @@
 #создаём класс
 class Student
-  attr_accessor :id, :surname, :name, :patronymic, :namber_phone, :telegram, :email, :git
+  attr_accessor :id, :surname, :name, :patronymic, :number_phone, :telegram, :email, :git
 
   #конструктор класса
   def initialize(information={})
@@ -9,7 +9,7 @@ class Student
   self.valid_name = information[:name] 
   self.valid_patronymic = information[:patronymic]
   self.valid_group = information[:group] if information[:group]
-  self.valid_namber = information[:nomber_phone] if information[:nomber_phone]
+  self.valid_number = information[:number_phone] if information[:number_phone]
   self.valid_telegram = information[:telegram] if information[:telegram]
   self.valid_email = information[:email] if information[:email]
   self.valid_git = information[:git] if information[:git]
@@ -73,11 +73,11 @@ end
   end  
 
   #проверка на корректность номера телефона
-  def valid_namber=(namber_phone)
-    if namber_phone.match?(/^\d{11}$/)==true
-      @nmber_phone = namber_phone
+  def valid_number=(number_phone)
+    if number_phone.match?(/^\d{11}$/)
+      @number_phone = number_phone
     else 
-      @namber_phone=nil
+      @number_phone=nil
     end  
   end  
 
@@ -108,13 +108,32 @@ end
     end  
   end  
 
+  #Проверка наличия git
+  def validate_git
+    if @git!=nil
+      true
+    else  
+      false
+    end
+  end      
+
+  
+  #Проверка наличия любого контакта для связи
+  def validate_contacts
+    if @email!=nil || @telegram!=nil || @number_phone!=nil
+      true
+    else  
+      false
+    end
+  end 
+
   #Вывод всех данных о студенте на экран
   def print_info
     puts ("\nID студента: #{@id}\nФИО: #{full_name} ")
     puts ("Номер руппы: #{@group}")if @group
-    puts ("Номер телефона: #{@namber_phone}")if @namber_phone  
+    puts ("Номер телефона: #{@number_phone}")if @number_phone  
     puts ("Телеграмм: #{@telegram}") if @telegram 
-    puts ("Пчота: #{@email}") if @email 
+    puts ("Почта: #{@email}") if @email 
     puts ("Гит: #{@git}") if @git 
   end  
 end

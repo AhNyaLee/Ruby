@@ -6,7 +6,9 @@ ann=Student.new(
   surname: "Логвина",
   name:"Аня",
   patronymic: "Владимировна",
- namber_phone: "g82188064"
+  number_phone: "89182188064",
+  email: "example@mail.com"
+
 )
 
 nastia=Student.new(
@@ -15,7 +17,7 @@ nastia=Student.new(
   name:"Настя",
   patronymic: "Александровна",
   group: "324",
-  namber_phone: "89892805804",
+  number_phone: "89895804",
   telegram: "nastia",
   email: "example@mail.com",
   git: "tamatm"
