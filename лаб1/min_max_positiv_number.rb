@@ -38,8 +38,8 @@ puts "min: #{min(array)}","max: #{ max(array)}", "номер первого по
 
 #выбор метода
 puts "Выбирете 1-min, 2-max, 3-номер первого положительного элемента"
-metod=gets.chomp
-file_path =gets.chomp
+metod=STDIN.gets.chomp
+file_path =STDIN.gets.chomp
 
 array_file = File.readlines(file_path).map(&:to_i)
 
