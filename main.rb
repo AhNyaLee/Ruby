@@ -16,7 +16,7 @@ dasha=Student.new(
   name:"Настя",
   patronymic: "Александровна",
   group: "324",
-  number_phone: "89895804",
+  number_phone: "89182188064",
   telegram: "nastia",
   email: "example@mail.com",
   git: "tamatm"
@@ -25,3 +25,4 @@ dasha=Student.new(
 puts ann
 puts dasha
 puts dasha.validate?
+puts dasha.getinfo()
