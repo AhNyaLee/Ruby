@@ -38,15 +38,15 @@ puts "min: #{min(array)}","max: #{ max(array)}", "номер первого по
 
 #выбор метода
 puts "Выбирете 1-min, 2-max, 3-номер первого положительного элемента"
-metod=STDIN.gets.chomp
-file_path =STDIN.gets.chomp
+metod=ARGV[0]
+file_path =ARGV[1]
 
 array_file = File.readlines(file_path).map(&:to_i)
 
 if metod == '1'
-  puts "min: #{min(array_file)}"
-elsif metod == '2'
-  puts "max: #{max(array_file)}"
-else
-  puts "номер первого положительного элемента: #{first_positiv_number(array_file )+1}"
+   puts "min: #{min(array_file)}"
+  elsif metod == '2'
+   puts "max: #{max(array_file)}"
+  elsif metod == '3'
+   puts "номер первого положительного элемента: #{first_positiv_number(array_file )+1}"
 end

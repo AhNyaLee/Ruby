@@ -5,11 +5,12 @@ ann=Student.new(
   surname: "Логвина",
   name:"Аня",
   patronymic: "Владимировна",
+  email: "example@mail.com",
   number_phone: "89182188064"
 
 )
 
-nastia=Student.new(
+dasha=Student.new(
   id: "13",
   surname: "Нещадимова",
   name:"Настя",
@@ -21,7 +22,6 @@ nastia=Student.new(
   git: "tamatm"
 )
 
-ann.print_info
-nastia.print_info
-ann.set_contacts(number_phone: nil, telegram: nil, email: "new_email@example.com")
-ann.print_info
+puts ann
+puts dasha
+puts dasha.validate?
