@@ -1,5 +1,6 @@
-#создаём класс
-class Student
+require_relative 'person'
+
+class Student<Person
   attr_accessor :id, :surname, :name, :patronymic, :git
   attr_reader :number_phone, :telegram, :email
   
@@ -12,7 +13,7 @@ class Student
   self.group = group if group
   set_contacts(number_phone: number_phone, telegram: telegram, email: email)
   self.git = git if git
-end
+ end
  
   #метод set для групп
   def set_group=(new_group)
@@ -29,44 +30,11 @@ end
     self.number = number_phone if number_phone
     self.telegram = telegram if telegram
     self.email = email if email
-  end
-
-  #запись ФИО
-  def full_name
-    "#{@surname} #{@name} #{@patronymic}"
-  end  
+  end 
    
   #Проверка наличия любого контакта для связи, git 
   def validate?
     @git!=nil && @email!=nil || @telegram!=nil || @number_phone!=nil
-  end
-
-  #краткая информация о студенте
-  def getinfo()
-    "#{get_fullname()}" " #{get_contacts()}" " #{get_git()}"
-  end
-
-  #Фамилия и Инициалы
-  def get_fullname()
-    "#{"ФИО: #{@surname} #{@name[0]} #{@patronymic[0]}"}"
-  end  
-
-  #git
-  def get_git()
-    "#{"Git:  #{@git} "}"
-  end
-
-  #средство связи
-  def get_contacts()
-    contacts={'номер телефона: ': @number_phone, 'почта: ': @email, 'Телеграм:': @telegram}
-    contact=nil
-    contacts.each do |key,value|
-      if !value.nil?
-        contact="#{key}#{value}"
-        break
-      end  
-    end
-    contact
   end
 
   #Вывод всех данных о студенте на экран
@@ -76,6 +44,7 @@ end
 
   #private
   private
+  
    #проверка на корректность id  
    def self.valid_id?(id)
     id.match?(/^[0-9]+$/)

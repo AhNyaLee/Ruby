@@ -1,4 +1,6 @@
-class Student_short
+require_relative 'person'
+
+class Student_short<Person
   attr_reader :id, :fullname, :git, :contact 
 
   def self.info_student(student)
