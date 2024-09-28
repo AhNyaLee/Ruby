@@ -22,6 +22,7 @@ dasha=Student.new(
   git: "tamatm"
 )
 
+
 puts ann
 puts dasha
 puts dasha.validate?
