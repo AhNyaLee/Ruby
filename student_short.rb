@@ -12,13 +12,12 @@ class Student_short<Person
   end 
   
   private
-  def initialize(id: nil, fullname: , git: nil, contact: nil)
-    @id = id
-    @fullname = fullname
-    @git = git
-    @contact = contact
-  end 
-
+    def initialize(id: nil, fullname: , git: nil, contact: nil)
+      @id = id
+      @fullname = fullname
+      @git = git
+      @contact = contact
+    end 
 end  
 
 

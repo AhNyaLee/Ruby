@@ -1,5 +1,7 @@
 class Person
 
+  attr_accessor :id, :surname, :name, :patronymic, :git
+  attr_reader :number_phone, :telegram, :email
   #запись ФИО
   def full_name
     "#{@surname} #{@name} #{@patronymic}"
@@ -17,7 +19,7 @@ class Person
     end
     contact
   end
-  
+
   #краткая информация о студенте
   def getinfo()
     "#{get_fullname()}" " #{get_contacts()}" " #{get_git()}"

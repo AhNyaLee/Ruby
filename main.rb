@@ -15,7 +15,6 @@ dasha=Student.new(
   surname: "Нещадимова",
   name:"Настя",
   patronymic: "Александровна",
-  group: "324",
   number_phone: "89182188064",
   telegram: "nastia",
   email: "example@mail.com",
