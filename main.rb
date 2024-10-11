@@ -1,4 +1,5 @@
 require_relative 'students'
+require_relative 'student_short'
 
 ann=Student.new(
   id: "12",
@@ -6,6 +7,7 @@ ann=Student.new(
   name:"Аня",
   patronymic: "Владимировна",
   email: "example@mail.com",
+  git: "sdfghjk",
   number_phone: "89182188064"
 
 )
@@ -13,16 +15,20 @@ ann=Student.new(
 dasha=Student.new(
   id: "13",
   surname: "Нещадимова",
-  name:"Настя",
+  name:"Дашап",
   patronymic: "Александровна",
   number_phone: "89182188064",
   telegram: "nastia",
-  email: "example@mail.com",
-  git: "tamatm"
+  git: "tamatm",
+  email: "example@mail.com"
+  
 )
 
 
 puts ann
 puts dasha
-puts dasha.validate?
-puts dasha.getinfo()
+puts dasha.getinfo
+dashaD=Student_short.about_student(dasha)
+annA=Student_short.from_sting(id: ann.id, string: ann.getinfo)
+puts dashaD
+puts annA

@@ -1,16 +1,17 @@
 require_relative 'person'
 
 class Student<Person
-  
+  attr_accessor :surname, :name, :patronymic
+  attr_reader :number_phone, :telegram, :email
+
   #конструктор класса
   def initialize(id:nil,surname:,name:,patronymic:,number_phone:nil,telegram:nil,email:nil,git:nil)
-  self.id = id if id
+  super(id: id, git: git)
+  set_contacts(number_phone: number_phone, telegram: telegram, email: email)
   self.surname = surname
   self.name = name 
   self.patronymic = patronymic
-  set_contacts(number_phone: number_phone, telegram: telegram, email: email)
-  self.git = git if git
- end 
+  end 
 
   #устанавливает значения поля или полей для введенных контактов
   def set_contacts(number_phone: nil, telegram: nil, email: nil)
@@ -26,14 +27,10 @@ class Student<Person
 
   #Вывод всех данных о студенте на экран
   def to_s
-    "\nID: #{@id}\nФИО: #{full_name()} #{"\nНомер телфона: #{@number_phone}" if @number_phone} #{"\nПочта: #{@email}" if @email} #{"\nТелеграм: #{@telegram}" if @telegram} #{"\nGit: #{@git}" if @git}"
+    "\nID: #{@id}\nФИО: #{@surname} #{@name} #{@patronymic} #{"\nНомер телфона: #{@number_phone}" if @number_phone} #{"\nПочта: #{@email}" if @email} #{"\nТелеграм: #{@telegram}" if @telegram} #{"\nGit: #{@git}" if @git}"
   end  
-
-  #проверка на корректность id  
-  def self.valid_id?(id)
-    id.match?(/^[0-9]+$/)
-  end
-
+  
+# Начало провекри на корректность данных
   #проверка на корректность ФИО
   def self.valid_surname?(surname)
     surname.match?(/^[A-Za-zА-Яа-яЁё]+$/)
@@ -45,15 +42,10 @@ class Student<Person
 
   def self.valid_surname?(patronymic)
     patronymic.match?(/^[A-Za-zА-Яа-яЁё]+$/)
-  end 
-  
-  #проверка на корректность номера группы
-  def self.valid_group?(group)
-    group.match?(/^[0-9]+$/)
-  end 
+  end  
 
-    #проверка на корректность номера телефона
-  def self.valid_number?(number_phone)
+   #проверка на корректность номера телефона
+   def self.valid_number?(number_phone)
     number_phone.match?(/^\d{11}$/)
   end
 
@@ -66,22 +58,9 @@ class Student<Person
   def self.valid_email?(email)
     email.match?(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}+$/)
   end
+# конец провекри на корректность данных  
 
-  #проверка на корректность гита
-  def self.valid_git?(git)
-    git.match?(/^[A-Za-zА-Яа-яЁё]+$/)
-  end 
-
-  #private
   private
-  def id(id)
-    if self.class.valid_id?(id)
-      @id = id
-    else 
-      raise ArgumentError, 'Invalid id'
-    end  
-  end  
-
   def surname=(surname)
     if self.class.valid_surname?(surname)
       @surname = surname
@@ -105,7 +84,7 @@ class Student<Person
       raise ArgumentError, 'Invalid patronymic'
     end  
   end
-  
+
   def number=(number_phone)
     if self.class.valid_number?(number_phone)
       @number_phone = number_phone
@@ -129,15 +108,9 @@ class Student<Person
       raise ArgumentError, 'Invalid email'
     end  
   end  
-
-   def git=(git)
-    if self.class.valid_git?(git)
-      @git = git
-    else 
-     raise ArgumentError, 'Invalid git'
-    end  
-  end  
 end
+
+
 
 
 

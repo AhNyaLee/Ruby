@@ -1,21 +1,30 @@
 require_relative 'person'
 
-class Student_short<Person
-  attr_reader :id, :fullname, :git, :contact 
+class Student_short < Person
+  attr_reader  :fullname, :contact 
 
-  def self.info_student(student)
-    new(id:student.id, fullname:student.full_name, git: student.get_git(), contact: student.get_contacts() )
+  def self.about_student(student)
+    new(id: student.id, git: student.git, fullname: student.get_fullname, contact: student.get_contacts)
   end  
 
-  def self.info_id_and_string(id: string:)
-    new(id: id, string: getinfo())
-  end 
+  def self.from_sting(id:,string:)
+    fullname, contact, git= read_info_from_string(string)
+    new(id: id, fullname:fullname, contact:contact, git:git)
+  end
   
+  def  self.read_info_from_string(string)
+    fullname,contact,git = string.split(', ')
+    return fullname,contact,git
+  end  
+  
+  def to_s
+    "\nID: #{@id} \nFullname: #{@fullname} \nGit: #{@git} \nContact: #{@contact}"
+  end
+
   private
-    def initialize(id: nil, fullname: , git: nil, contact: nil)
-      @id = id
+    def initialize(id: nil, fullname:nil , git: nil, contact: nil)
+      super(id: id, git: git)
       @fullname = fullname
-      @git = git
       @contact = contact
     end 
 end  
