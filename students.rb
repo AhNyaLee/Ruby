@@ -40,7 +40,7 @@ class Student<Person
     name.match?(/^[A-Za-zА-Яа-яЁё]+$/)
   end 
 
-  def self.valid_surname?(patronymic)
+  def self.valid_patronymic?(patronymic)
     patronymic.match?(/^[A-Za-zА-Яа-яЁё]+$/)
   end  
 
@@ -78,7 +78,7 @@ class Student<Person
   end 
 
   def patronymic=(patronymic)
-    if self.class.valid_surname?(patronymic)
+    if self.class.valid_patronymic?(patronymic)
       @patronymic=patronymic
     else 
       raise ArgumentError, 'Invalid patronymic'
