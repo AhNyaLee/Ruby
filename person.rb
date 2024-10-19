@@ -45,18 +45,6 @@ class Person
 
 
   # Начало провекри на корректность данных
-  #проверка на корректность ФИО
-  def self.valid_surname?(surname)
-    surname.match?(/^[A-Za-zА-Яа-яЁё]+$/)
-  end 
-
-  def self.valid_name?(name)
-    name.match?(/^[A-Za-zА-Яа-яЁё]+$/)
-  end 
-
-  def self.valid_patronymic?(patronymic)
-    patronymic.match?(/^[A-Za-zА-Яа-яЁё]+$/)
-  end  
 
     #проверка на корректность id  
     def self.valid_id?(id)
@@ -125,28 +113,4 @@ class Person
       raise ArgumentError, 'Invalid email'
     end  
   end
-  
-  def surname=(surname)
-    if self.class.valid_surname?(surname)
-      @surname = surname
-    else 
-       raise ArgumentError, 'Invalid surname'
-    end  
-  end
-    
-  def name=(name)
-    if self.class.valid_name?(name) 
-      @name=name
-    else 
-      raise ArgumentError, 'Invalid name'
-    end  
-  end 
-
-  def patronymic=(patronymic)
-    if self.class.valid_patronymic?(patronymic)
-      @patronymic=patronymic
-    else 
-      raise ArgumentError, 'Invalid patronymic'
-    end  
-  end  
 end

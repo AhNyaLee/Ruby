@@ -20,6 +20,44 @@ class Student<Person
   def to_s
     "\nID: #{@id}\nФИО: #{@surname} #{@name} #{@patronymic} #{"\nНомер телфона: #{@number_phone}" if @number_phone} #{"\nПочта: #{@email}" if @email} #{"\nТелеграм: #{@telegram}" if @telegram} #{"\nGit: #{@git}" if @git}"
   end  
+
+  #проверка на корректность ФИО
+  def self.valid_surname?(surname)
+    surname.match?(/^[A-Za-zА-Яа-яЁё]+$/)
+  end 
+
+  def self.valid_name?(name)
+    name.match?(/^[A-Za-zА-Яа-яЁё]+$/)
+  end 
+
+  def self.valid_patronymic?(patronymic)
+    patronymic.match?(/^[A-Za-zА-Яа-яЁё]+$/)
+  end  
+
+  private
+    def surname=(surname)
+      if self.class.valid_surname?(surname)
+        @surname = surname
+      else 
+        raise ArgumentError, 'Invalid surname'
+      end  
+    end
+      
+    def name=(name)
+      if self.class.valid_name?(name) 
+        @name=name
+      else 
+        raise ArgumentError, 'Invalid name'
+      end  
+    end 
+
+    def patronymic=(patronymic)
+      if self.class.valid_patronymic?(patronymic)
+        @patronymic=patronymic
+      else 
+        raise ArgumentError, 'Invalid patronymic'
+      end  
+    end  
 end
 
 
