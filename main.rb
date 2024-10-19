@@ -15,7 +15,7 @@ ann=Student.new(
 dasha=Student.new(
   id: "13",
   surname: "Нещадимова",
-  name:"Дашап",
+  name:"Даша",
   patronymic: "Александровна",
   number_phone: "89182188064",
   telegram: "nastia",
@@ -27,8 +27,8 @@ dasha=Student.new(
 
 puts ann
 puts dasha
-puts dasha.getinfo
-dashaD=Student_short.about_student(dasha)
-annA=Student_short.from_sting(id: ann.id, string: ann.getinfo)
-puts dashaD
-puts annA
+puts dasha.get_info
+dasha_short=Student_short.about_student(dasha)
+ann_short=Student_short.from_sting(id: ann.id, string: ann.get_info)
+puts dasha_short
+puts ann_short

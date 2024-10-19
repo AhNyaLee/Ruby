@@ -1,10 +1,9 @@
 require_relative 'person'
 
 class Student_short < Person
-  attr_reader  :fullname, :contact 
 
   def self.about_student(student)
-    new(id: student.id, git: student.git, fullname: student.get_fullname, contact: student.get_contacts)
+    new(id: student.id, git: student.git, fullname: student.fullname, contact: student.contact)
   end  
 
   def self.from_sting(id:,string:)
