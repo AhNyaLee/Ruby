@@ -1,7 +1,5 @@
 class Person
 
-  attr_accessor :id, :git
-
   def initialize(id:nil,git:nil,number_phone:nil,telegram:nil,email:nil)
     self.id = id if id
     self.git = git if git
@@ -40,7 +38,7 @@ class Person
 
   #краткая информация о студенте
   def get_info()
-    "#{fullname()}, #{contact()}, #{git}"
+    "#{fullname()}, #{contact()}, #{@git}"
   end
 
 
@@ -70,10 +68,8 @@ class Person
   def self.valid_email?(email)
     email.match?(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}+$/)
   end
-  # конец провекри на корректность данных  
-
-  #private
-  private
+  # конец провекри на корректность данных 
+  
   def id=(id)
     if self.class.valid_id?(id)
       @id = id
@@ -90,6 +86,8 @@ class Person
     end  
   end 
 
+  #private
+  private
   def number=(number_phone)
     if self.class.valid_number?(number_phone)
       @number_phone = number_phone

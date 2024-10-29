@@ -22,21 +22,15 @@ class Student<Person
   end  
 
   #проверка на корректность ФИО
-  def self.valid_surname?(surname)
-    surname.match?(/^[A-Za-zА-Яа-яЁё]+$/)
-  end 
 
   def self.valid_name?(name)
     name.match?(/^[A-Za-zА-Яа-яЁё]+$/)
   end 
-
-  def self.valid_patronymic?(patronymic)
-    patronymic.match?(/^[A-Za-zА-Яа-яЁё]+$/)
-  end  
+ 
 
   private
     def surname=(surname)
-      if self.class.valid_surname?(surname)
+      if self.class.valid_name?(surname)
         @surname = surname
       else 
         raise ArgumentError, 'Invalid surname'
@@ -52,7 +46,7 @@ class Student<Person
     end 
 
     def patronymic=(patronymic)
-      if self.class.valid_patronymic?(patronymic)
+      if self.class.valid_name?(patronymic)
         @patronymic=patronymic
       else 
         raise ArgumentError, 'Invalid patronymic'

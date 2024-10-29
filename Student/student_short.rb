@@ -20,7 +20,7 @@ class Student_short < Person
     "\nID: #{@id} \nFullname: #{@fullname} \nGit: #{@git} \nContact: #{@contact}"
   end
 
-  private
+  private_class_method :new
     def initialize(id: nil, fullname:nil , git: nil, contact: nil)
       super(id: id, git: git)
       @fullname = fullname
