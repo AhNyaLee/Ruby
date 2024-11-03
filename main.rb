@@ -1,8 +1,11 @@
 require_relative 'processing_array'
 
-array=[1,2,3,4,5,6,7,8,9,10]
+array=[1,2,3,4,4,4,5,6,7,8,9,10]
+a=4
+b=10
 
+search_for_elements(array,a,b) 
 
-search_for_elements(array) do |x|
-  puts x if x >= 4 && x <= 10
-end
+count_for_elements(array,a,b) do |element,min| 
+  element==min
+end 
