@@ -6,4 +6,5 @@ b=10
 
 search_for_elements(array,a,b) 
 count_for_elements(array,a,b) {|element,min| element==min}
-puts negative_positive_numbers(array)
+negative_positive_numbers(array)
+count_sums(array)

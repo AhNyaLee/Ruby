@@ -19,3 +19,17 @@ def negative_positive_numbers(array)
   negative_array=array.select {|element| element  if element<0}
   print "negative: " +  negative_array.join(' ') + "\n"
 end
+
+def count_sums(array)
+  sums = Set.new  
+  count = 0
+
+  array.combination(2) do |a, b|
+    sums.add(a + b)
+  end
+
+  array.each do |element|
+    count += 1 if sums.include?(element)
+  end
+    print count.to_s + "\n"
+end
