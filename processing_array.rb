@@ -33,3 +33,23 @@ def count_sums(array)
   end
     print count.to_s + "\n"
 end
+
+def get_array_from_input
+  puts "1 - Чтение массива из файла"
+  puts "2 - Ввод массива с клавиатуры"
+  input = gets.chomp
+
+  if input == '1'
+    puts "Введите имя файла:"
+    filename = gets.chomp
+    array = File.readlines(filename).map(&:to_i)
+    print array.join(' ') + "\n"
+  elsif input == '2'
+    puts "Введите числа через пробел:"
+    array = gets.chomp.split.map(&:to_i)
+  else
+    puts "Неверный ввод. Пожалуйста, выберите 1 или 2."
+    return get_array_from_input
+  end
+  array
+end
