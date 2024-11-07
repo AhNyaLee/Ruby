@@ -1,7 +1,6 @@
 def search_for_elements(array,a,b)
-  array.each do |x|
-    puts x if x >= a && x <= b
-  end  
+  results = array.select { |x| x >= a && x <= b }
+  print results.join(' ') + "\n"    
 end
 
 def count_for_elements(array,a,b)
@@ -11,5 +10,12 @@ def count_for_elements(array,a,b)
   new_array.each do |element|
     count+=1 if yield(element,min)
   end
-   puts count
+   print count.to_s + "\n"
+end
+
+def negative_positive_numbers(array)
+  positive_array=array.select {|element| element if element>=0}
+  print "positive: " + positive_array.join(' ') + "\n"
+  negative_array=array.select {|element| element  if element<0}
+  print "negative: " +  negative_array.join(' ') + "\n"
 end
