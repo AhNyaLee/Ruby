@@ -1,37 +1,25 @@
 def search_for_elements(array,a,b)
-  results = array.select { |x| x >= a && x <= b }
-  print results.join(' ') + "\n"    
+   filtered = array.grep(a..b)
+   min = filtered.min
+   print filtered.count(min).to_s+"\n"
 end
 
 def count_for_elements(array,a,b)
-  new_array=array.select  {|element|  element if element>=a && element<=b}
-  min=new_array.min
-  count=0
-  new_array.each do |element|
-    count+=1 if yield(element,min)
-  end
-   print count.to_s + "\n"
+  results = array.grep(a..b)
+  print results.join(' ') + "\n"    
 end
 
 def negative_positive_numbers(array)
-  positive_array=array.select {|element| element if element>=0}
+  positive_array= array.select(&:positive?)
   print "positive: " + positive_array.join(' ') + "\n"
-  negative_array=array.select {|element| element  if element<0}
+  negative_array=array.select(&:negative?)
   print "negative: " +  negative_array.join(' ') + "\n"
 end
 
 def count_sums(array)
-  sums = Set.new  
-  count = 0
-
-  array.combination(2) do |a, b|
-    sums.add(a + b)
-  end
-
-  array.each do |element|
-    count += 1 if sums.include?(element)
-  end
-    print count.to_s + "\n"
+  sums = Set.new
+  array.combination(2).map { |x, y| sums.add(x + y) }
+  print sums.count { |sum| array.include?(sum) }.to_s + "\n"
 end
 
 def get_array_from_input

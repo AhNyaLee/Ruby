@@ -17,7 +17,7 @@ loop do
     when '1'
         search_for_elements(array, a, b) 
     when '2'
-        count_for_elements(array, a, b) { |element, min| element == min }
+        count_for_elements(array, a, b) 
     when '3'
         negative_positive_numbers(array)
     when '4'         
