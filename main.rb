@@ -11,17 +11,19 @@ loop do
     puts "3 - Дан целочисленный массив. Необходимо вывести вначале его положительные элементы, а затем - отрицательные."
     puts "4 - Для введенного списка вывести количество элементов, которые могут быть получены как сумма двух любых других элементов списка."
     puts "5 - выход"
-    choice = gets.chomp
+    choice = STDIN.gets.chomp
   
     case choice
     when '1'
-        search_for_elements(array, a, b) 
+       print search_for_elements(array, a, b).to_s+"\n" 
     when '2'
-        count_for_elements(array, a, b) 
+        print count_for_elements(array, a, b).join(', ') + "\n"
     when '3'
-        negative_positive_numbers(array)
+      positive_array, negative_array=negative_positive_numbers(array)
+      print "positive: " + positive_array.join(' ') + "\n"
+      print "negative: " +  negative_array.join(' ') + "\n"
     when '4'         
-        count_sums(array)
+        print count_sums(array).to_s+"\n"
     when '5'
       puts "Выход из программы."
       break
