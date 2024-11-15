@@ -1,4 +1,5 @@
 require_relative 'processing_array'
+require_relative 'block'
 
 a = 4
 b = 10

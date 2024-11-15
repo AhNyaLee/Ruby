@@ -1,41 +1,50 @@
-def search_for_elements(array,a,b)
-   filtered = array.grep(a..b)
-   min = filtered.min
-   filtered.count(min)
-end
+class Processing_array
+  attr_accessor :array
 
-def count_for_elements(array,a,b)
-  results = array.grep(a..b)
-  results   
-end
-
-def negative_positive_numbers(array)
-  positive_array= array.select(&:positive?)
-  negative_array=array.select(&:negative?)
-  [positive_array,negative_array]
-end
-
-def count_sums(array)
-  sums = Set.new
-  array.combination(2).map { |x, y| sums.add(x + y) }
-  sums.count { |sum| array.include?(sum) }
-end
-
-def get_array_from_input
-  puts "1 - Чтение массива из файла"
-  puts "2 - Ввод массива с клавиатуры"
-  input = STDIN.gets.chomp
-
-  if input == '1'
-    puts "Введите имя файла:"
-    filename = gets.chomp
-    array = File.readlines(filename).map(&:to_i)
-    print array.join(' ') + "\n"
-  elsif input == '2'
-    puts "Введите числа через пробел:"
-    array = gets.chomp.split.map(&:to_i)
-  else
-    puts "Неверный ввод. Пожалуйста, выберите 1 или 2."
+  def initialize(array)
+    self.array = array
   end
-  array
+
+  def count_array(value=nil,&block )
+    if value.nil? && block_given?
+      count = 0
+      self.array.each do |element|
+        if yield(element) == true
+          count += 1
+        end
+      end
+       count
+    elsif !value.nil? && !block_given?
+      count = 0
+      self.array.each do |element|
+        if element == value.to_i
+          count += 1
+        end
+      end
+      count
+    else
+      self.array.size
+    end
+  end  
+  
+  def filter_map_array(&block)
+    if !(block_given?)
+      self.array.filter_map
+    end
+    
+    result_array = Array.new()
+    self.array.each do |element|
+      result_array.append(block.call(element)) if !(block.call(element).nil?)
+    end
+    
+   result_array
+  end
+ 
 end
+
+array = Processing_array.new([1, 2, 3, 4, 5, 2, 3])
+
+
+puts "Количество элементов больше 3: #{array.count_array() do |element| element >3 end}"
+
+puts "Вывод чётных чисел: #{array.filter_map_array { |element| element if element.even?}}"
