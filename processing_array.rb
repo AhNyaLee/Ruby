@@ -36,10 +36,28 @@ class Processing_array
     self.array.each do |element|
       result_array.append(block.call(element)) if !(block.call(element).nil?)
     end
-    
+
    result_array
   end
- 
+
+  def group_by_array(value=nil,&block)
+    if !(block_given?)
+      return self.array.group_by
+    end
+
+    hash = {}
+    self.array.each do |element|
+      key = yield(element)
+      if hash[key].nil?
+        hash[key] = [element]
+      else
+        hash[key].append(element)
+      end
+    end
+
+    return hash
+  end 
+
 end
 
 array = Processing_array.new([1, 2, 3, 4, 5, 2, 3])
@@ -48,3 +66,5 @@ array = Processing_array.new([1, 2, 3, 4, 5, 2, 3])
 puts "Количество элементов больше 3: #{array.count_array() do |element| element >3 end}"
 
 puts "Вывод чётных чисел: #{array.filter_map_array { |element| element if element.even?}}"
+
+puts "Вывод чётных чисел: #{array.group_by_array { |element| element.even?}}"
