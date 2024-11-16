@@ -82,11 +82,26 @@ class Processing_array
       end
     end
     [true_array,false_arra]       
+  end 
+
+  def take_while_array(&block)
+    if !(block_given?)
+      return self.array
+    end
+
+    new_array=[]
+    self.array.each do |element|
+      if yield(element) == false
+        break
+      end
+      new_array.append(element)
+    end
+    new_array
   end  
 
 end
 
-array = Processing_array.new([1, 2, 3, 4, 5, 2, 3, -55])
+array = Processing_array.new([5,7,8,1, 2, 3, 4, 5, 2, 3, -55])
 
 
 puts "Количество элементов больше 3: #{array.count_array() do |element| element >3 end}"
@@ -99,4 +114,4 @@ puts "min= #{array.min_array}"
 
 puts "Чётные числа: #{array.partition_array { |element| element.even?}}"
 
-
+puts "элементы больше 4: #{array.take_while_array{ |element| element > 4 }}"
