@@ -58,9 +58,17 @@ class Processing_array
     return hash
   end 
 
+  def min_array
+    min = self.array[0]
+    self.array.each do |element|
+      min = element if element < min  
+    end
+    min 
+  end
+  
 end
 
-array = Processing_array.new([1, 2, 3, 4, 5, 2, 3])
+array = Processing_array.new([1, 2, 3, 4, 5, 2, 3, -55])
 
 
 puts "Количество элементов больше 3: #{array.count_array() do |element| element >3 end}"
@@ -68,3 +76,5 @@ puts "Количество элементов больше 3: #{array.count_arra
 puts "Вывод чётных чисел: #{array.filter_map_array { |element| element if element.even?}}"
 
 puts "Вывод чётных чисел: #{array.group_by_array { |element| element.even?}}"
+
+puts "min= #{array.min_array}"
