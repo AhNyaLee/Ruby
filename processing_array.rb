@@ -65,7 +65,25 @@ class Processing_array
     end
     min 
   end
-  
+
+  def partition_array(&block)
+    if !(block_given?)
+      return self.array
+    end
+
+    true_array=[]
+    false_arra=[]
+
+    self.array.each do |element|
+      if yield(element)
+        true_array.append(element)
+      else
+        false_arra.append(element)
+      end
+    end
+    [true_array,false_arra]       
+  end  
+
 end
 
 array = Processing_array.new([1, 2, 3, 4, 5, 2, 3, -55])
@@ -78,3 +96,7 @@ puts "Вывод чётных чисел: #{array.filter_map_array { |element| e
 puts "Вывод чётных чисел: #{array.group_by_array { |element| element.even?}}"
 
 puts "min= #{array.min_array}"
+
+puts "Чётные числа: #{array.partition_array { |element| element.even?}}"
+
+
