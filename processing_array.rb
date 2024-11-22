@@ -42,7 +42,7 @@ class Processing_array
 
   def group_by_array(value=nil,&block)
     if !(block_given?)
-      return self.array.group_by
+      return self.array
     end
 
     hash = {}
