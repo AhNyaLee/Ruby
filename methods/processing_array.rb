@@ -29,7 +29,7 @@ class Processing_array
   
   def filter_map_array(&block)
     if !(block_given?)
-      self.array.filter_map
+      self.array
     end
     
     result_array = Array.new()

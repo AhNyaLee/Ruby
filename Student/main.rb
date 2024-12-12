@@ -1,5 +1,7 @@
 require_relative 'students'
 require_relative 'student_short'
+require_relative 'byniretree'
+
 
 ann=Student.new(
   id: "12",
@@ -8,7 +10,8 @@ ann=Student.new(
   patronymic: "Владимировна",
   email: "example@mail.com",
   git: "sdfghjk",
-  number_phone: "89182188064"
+  number_phone: "89182188064",
+  birthdate: "12/03/2012"
 
 )
 
@@ -20,15 +23,22 @@ dasha=Student.new(
   number_phone: "89182188064",
   telegram: "nastia",
   git: "tamatm",
-  email: "example@mail.com"
-  
+  email: "example@mail.com",
+  birthdate: "12/03/2004"
 )
 
 
 puts ann
 puts dasha
-puts dasha.get_info
-dasha_short=Student_short.about_student(dasha)
-ann_short=Student_short.from_sting(id: ann.id, string: ann.get_info)
-puts dasha_short
-puts ann_short
+puts ann.birthdate
+puts dasha.birthdate
+
+puts ann.birthdate > dasha.birthdate
+
+tree = BinaryTree.new
+tree.add(ann)
+tree.add(dasha)
+
+tree.iterator.each do |node|
+	puts node.name
+end

@@ -48,7 +48,6 @@ class Tag
     attrs
   end
 
-  private
 
   def single?
     ['img', 'form'].include?(self.name)
