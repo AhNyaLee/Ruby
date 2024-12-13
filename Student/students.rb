@@ -43,6 +43,19 @@ class Student<Person
     birthdate.match?(/^\d{2}\/\d{2}\/\d{4}$/)
   end 
  
+  def to_h
+    {
+      'id' => self.id,
+      'surname' => self.surname,
+      'name' => self.name,
+      'second_name' => self.second_name,
+      'birthdate' => self.birthdate,
+      'phone' => self.phone,
+      'telegram' => self.telegram,
+      'email' => self.email,
+      'git' => self.git
+    }
+  end
 
   private
     def surname=(surname)
