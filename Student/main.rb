@@ -1,7 +1,10 @@
 require_relative 'students'
 require_relative 'student_short'
 require_relative 'byniretree'
-require_relative 'data_list_student_short.rb'
+require_relative 'data_list_student_short'
+require_relative 'student_list_json'
+require_relative 'student_list_yaml'
+
 
 
 ann=Student.new(
@@ -32,9 +35,9 @@ dasha=Student.new(
 puts ann
 puts dasha
 puts ann.birthdate
-#puts dasha.birthdate
+puts dasha.birthdate
 
-#puts ann.birthdate > dasha.birthdate
+puts ann.birthdate > dasha.birthdate
 
 tree = BinaryTree.new
 tree.add(ann)
@@ -53,3 +56,4 @@ puts data_list.row_from_attrs(ann_short)
 data_list.select(0)
 result =  data_list.get_data.get_by_index(0, 1)
 puts result
+

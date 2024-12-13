@@ -31,8 +31,8 @@ class Student_list_JSON
       students_list[((k-1) * n)...(k*n)]
     else
       raise IndexError, 'Индекс не в диапозоне'
+    end
   end
-
   def sort 
     self.students_list.sort_by do |student|
       [student.surname, student.name]
