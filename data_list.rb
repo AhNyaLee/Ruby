@@ -13,6 +13,12 @@ class Data_list
     self.selected_indexes << index
   end
 
+  def get_names
+  end
+  
+  def get_data
+  end
+    
   private
   attr_accessor :list,  :selected_elems
 end
