@@ -13,6 +13,14 @@ class Data_table
     result
   end
 
+  def count_of_rows
+    self.data.length
+  end
+  def count_of_columns
+    return self.data.first.length if !self.data.first.nil?
+    0
+  end
+  
   private 
   attr_reader :data 
   
