@@ -1,5 +1,6 @@
 class Person
 
+  attr_reader :id, :git
   def initialize(id:nil,git:nil,number_phone:nil,telegram:nil,email:nil)
     self.id = id if id
     self.git = git if git
@@ -33,8 +34,12 @@ class Person
     
   #Фамилия и Инициалы
   def fullname
-    "#{@surname} #{@name[0]} #{@patronymic[0]}"
-  end  
+    if @fullname
+      @fullname
+    else
+      "#{@surname} #{@name} #{@patronymic}"
+    end
+  end
 
   #краткая информация о студенте
   def get_info()

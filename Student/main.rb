@@ -1,10 +1,11 @@
 require_relative 'students'
 require_relative 'student_short'
 require_relative 'byniretree'
+require_relative 'data_list_student_short.rb'
 
 
 ann=Student.new(
-  id: "12",
+  id: "14",
   surname: "Логвина",
   name:"Аня",
   patronymic: "Владимировна",
@@ -31,9 +32,9 @@ dasha=Student.new(
 puts ann
 puts dasha
 puts ann.birthdate
-puts dasha.birthdate
+#puts dasha.birthdate
 
-puts ann.birthdate > dasha.birthdate
+#puts ann.birthdate > dasha.birthdate
 
 tree = BinaryTree.new
 tree.add(ann)
@@ -42,3 +43,13 @@ tree.add(dasha)
 tree.iterator.each do |node|
 	puts node.name
 end
+
+
+ann_short=Student_short.from_sting(id: ann.id, string: ann.get_info)
+puts "#4:"
+data_table = Data_table.new([[]])
+data_list = Data_list_student_short.new([ann_short])
+puts data_list.row_from_attrs(ann_short)
+data_list.select(0)
+result =  data_list.get_data.get_by_index(0, 1)
+puts result
