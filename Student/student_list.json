@@ -1,11 +1,35 @@
-sljson = Student_list_JSON.new()
-
-
-sljson.sort.each do |element|
-  puts element
-end
-slyaml = Student_list_YAML.new() 
-slyaml.insert_student(ann)
-slyaml.read_list_of_students.each do |student|
-  puts student
-end
+[
+  {
+    "id": "14",
+    "surname": "Логвина",
+    "name": "Аня",
+    "patronymic": "Владимировна",
+    "birthdate": "12/03/2003",
+    "telegram": null,
+    "email": "example@mail.com",
+    "number_phone": "89182188064",
+    "git": "sdfghjk"
+  },
+  {
+    "id": "15",
+    "surname": "Кравцова",
+    "name": "Даша",
+    "patronymic": "Александровна",
+    "birthdate": "12/03/2004",
+    "telegram": "nastia",
+    "email": "example@mail.com",
+    "number_phone": "89182188064",
+    "git": "tamatm"
+  },
+  {
+    "id": "13",
+    "surname": "Нещадимова",
+    "name": "Даша",
+    "patronymic": "Александровна",
+    "birthdate": "12/03/2004",
+    "telegram": "nastia",
+    "email": "example@mail.com",
+    "number_phone": "89182188064",
+    "git": "tamatm"
+  }
+]

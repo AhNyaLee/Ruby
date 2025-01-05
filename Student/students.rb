@@ -44,17 +44,8 @@ class Student<Person
   end 
  
   def to_h
-    {
-      'id' => self.id,
-      'surname' => self.surname,
-      'name' => self.name,
-      'second_name' => self.second_name,
-      'birthdate' => self.birthdate,
-      'phone' => self.phone,
-      'telegram' => self.telegram,
-      'email' => self.email,
-      'git' => self.git
-    }
+    { id: self.id, surname: self.surname, name: self.name, patronymic: self.patronymic, 
+    birthdate: self.birthdate, telegram: self.telegram, email: self.email, number_phone: self.number_phone, git: self.git }
   end
 
   private
@@ -89,6 +80,8 @@ class Student<Person
         raise ArgumentError, 'Invalid birthdate'
       end  
     end  
+    private
+    attr_reader :number_phone, :email, :telegram
 end
 
 
