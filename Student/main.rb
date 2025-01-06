@@ -63,15 +63,27 @@ puts result
 
 
 sljson = StudentListJSON.new('student_list.json')
-puts "#4 №2 вывод всех студентов:"
+puts "#4 №2 вывод всех студентов (json):"
 
 sljson.read_list_of_students.each do |student|
   puts student.fullname
 end
 
-puts "#4 №2 сортировка по фамилии :"
+puts "#4 №2 сортировка по фамилии (json):"
 sljson.sort.each do |element|
   puts element
 end
 
 
+slyaml = Student_list_YAML.new('tudents_list.yaml') 
+slyaml.insert_student(dasha)
+puts "#4 №2 вывод всех студентов (yaml):"
+slyaml.read_list_of_students.each do |student|
+  puts student
+end
+
+puts "#4 №2 сортировка по фамилии (yaml):"
+slyaml.sort.each do |element|
+  puts element
+end
+slyaml.delete_by_id(dasha.id)
