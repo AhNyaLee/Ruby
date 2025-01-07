@@ -37,7 +37,12 @@ class Student_list
   end
   def insert_student(student)
     students_list = self.strategy.read_list_of_students
-    students_list.push(student)
+    if (unique_student?(student))
+      students_list.push(student)
+    else
+      raise ArgumentError, 'Student already exists'
+    end
+  
     self.strategy.write_list_of_students(students_list)
   end
   def replace_by_id(student)
@@ -59,4 +64,35 @@ class Student_list
     students_list = self.strategy.read_list_of_students
     students_list.count
   end
+
+  
+  private
+  def unique_student?(student)
+    unigue_git?(student.git) && unique_phone?(student.phone) && unique_email?(student.email) && unique_telegram?(student.telegram)
+  end
+  def unigue_git?(git)
+    unique_attr?(:git, git)
+  end
+  def unique_phone?(phone)
+    unique_attr?(:phone, phone)
+  end
+  def unique_email?(email)
+    unique_attr?(:email, email)
+  end
+  def unique_telegram?(telegram)
+    unique_attr?(:telegram, telegram)
+  end
+  def unique_attr?(symbol, value)
+    tree = Binary_tree.new
+    self.strategy.read_list_of_students.each do |student|
+      student.unique_indicator = symbol
+      tree.add(student)
+    end
+    tree.iterator.each do |student|
+      if student.unique_indicator == value
+        return false
+      end
+    end
+    true
+  end 
 end

@@ -2,15 +2,19 @@ require_relative 'db/pg_client'
 require_relative 'students'
 require_relative 'student_short'
 class Student_list_DB
+
   attr_accessor :client 
+
   def initialize
-    self.client = PG_client.new
+    self.client = PG_client.instance
   end
+
   def get_by_id(id)
     result = client.exec_params("SELECT * FROM students WHERE id = $1", [id])
     raise "Student with id=#{id} not found" if result.ntuples.zero?
     Student.from_hash(result[0]) 
   end
+
   def get_k_n_student_short_list(k = 1, n = 20)
     k = 1 if k < 1
     offset = (k - 1) * n
@@ -26,10 +30,11 @@ class Student_list_DB
     end
     Data_list_student_short.new(student_short_list)
   end
-  # Сортировка студентов по указанному полю
+
+
   def sort(field = 'surname')
     result = client.exec("SELECT * FROM students ORDER BY #{field}")
-    result.map { |row| row } # Возвращаем массив хэшей
+    result.map { |row| row } 
   end
   # Вставка нового студента
   def insert_student(student)
@@ -73,4 +78,34 @@ class Student_list_DB
     result = client.exec("SELECT COUNT(*) FROM students")
     result[0]['count'].to_i
   end
+
+  private
+  def unique_student?(student)
+    unigue_git?(student.git) && unique_phone?(student.phone) && unique_email?(student.email) && unique_telegram?(student.telegram)
+  end
+  def unigue_git?(git)
+    unique_attr?(:git, git)
+  end
+  def unique_phone?(phone)
+    unique_attr?(:phone, phone)
+  end
+  def unique_email?(email)
+    unique_attr?(:email, email)
+  end
+  def unique_telegram?(telegram)
+    unique_attr?(:telegram, telegram)
+  end
+  def unique_attr?(symbol, value)
+    tree = Binary_tree.new
+    self.strategy.read_list_of_students.each do |student|
+      student.unique_indicator = symbol
+      tree.add(student)
+    end
+    tree.iterator.each do |student|
+      if student.unique_indicator == value
+        return false
+      end
+    end
+    true
+  end 
 end

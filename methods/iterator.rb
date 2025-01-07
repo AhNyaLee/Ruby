@@ -12,6 +12,8 @@ class Iterator include Enumerable
     end
   end
 
+
+
   private
   attr_writer :root
 end

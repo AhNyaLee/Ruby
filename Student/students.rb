@@ -5,8 +5,9 @@ class Student<Person
   include Comparable
   attr_accessor :surname, :name, :patronymic, :birthdate
   attr_reader :number_phone, :email, :telegram
+  attr_accessor :unique_indicator
   #конструктор класса
-  def initialize(id:nil,surname:,name:,patronymic:,number_phone:nil,telegram:nil,email:nil,git:nil,birthdate: nil)
+  def initialize(id:nil,surname:,name:,patronymic:,number_phone:nil,telegram:nil,email:nil,git:nil,birthdate: nil, unique_indicator: :git)
     super(id: id, git: git,number_phone: number_phone, telegram: telegram, email: email)
     self.surname = surname
     self.name = name 
@@ -85,7 +86,8 @@ class Student<Person
         raise ArgumentError, 'Invalid birthdate'
       end  
     end  
-    private
+
+    
    
 end
 

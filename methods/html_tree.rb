@@ -18,6 +18,20 @@ class HTML_tree
     DFS_iterator.new(self.root)
   end
 
+  def select()
+    return nil if @root.nil? 
+
+    new_array = []
+
+    bfs.each do |item|
+      if yield(item)
+        new_array << item
+      end
+    end
+
+    return new_array
+  end
+
   private
   attr_writer :root
   
@@ -39,7 +53,7 @@ class HTML_tree
     self.root = tag_stack.first if tag_stack.length > 0
   end
 
-  # methods for checking type of the element
+  
   
   def opening_element?(element)
     element.start_with?('<') && !element.start_with?('</') && !element.end_with?('/>')

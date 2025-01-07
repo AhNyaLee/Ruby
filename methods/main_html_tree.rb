@@ -13,6 +13,7 @@ end
 
 
 puts "select"
-array = tree.bfs.select { |element| element.has_content?}
-puts array
+aray =  HTML_tree.new('<div class="class"><p><span>hello</span></p><p><span>hello</span></p></div>').select{ |element| element.has_content?}
+puts aray
+
 
