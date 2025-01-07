@@ -9,6 +9,11 @@ class PG_client
       port: 1234
     )
   end
+
+  def exec(query)
+    client.exec(query)
+  end
+  
   private
   attr_accessor :client
 end

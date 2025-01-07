@@ -67,10 +67,13 @@ puts result
 
 sl = Student_list.new 
 sl.strategy = YAML_strategy.new('tudents_list.yaml')
-sl.insert_student(ann)
 
 temp = sl.get_k_n_student_short_list(1, 2)
 temp.select(1)
 puts temp.get_data.count_of_rows
 
 client = PG_client.new
+
+client.exec("select * from students;").each do |row|
+  puts row
+end
