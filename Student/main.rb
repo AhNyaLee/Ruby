@@ -5,7 +5,7 @@ require_relative 'data_list_student_short'
 require_relative 'student_list_json'
 require_relative 'student_list_yaml'
 require_relative 'FileHandler'
-
+require_relative 'db/pg_client.rb'
 
 ann=Student.new(
   id: "14",
@@ -72,3 +72,5 @@ sl.insert_student(ann)
 temp = sl.get_k_n_student_short_list(1, 2)
 temp.select(1)
 puts temp.get_data.count_of_rows
+
+client = PG_client.new
