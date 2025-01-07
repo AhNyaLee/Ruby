@@ -1,10 +1,12 @@
 require 'json'
 require_relative 'student_short'
 require_relative 'students'
-require_relative 'FileHandler'
+require_relative 'strategy'
+class JSON_strategy < Strategy
+  def initialize(path)
+    self.path = path
+  end
 
-class StudentListJSON<FileHandler
- 
   def read_list_of_students
     file = File.read(self.path)
     raise 'File is empty' if file.strip.empty?
