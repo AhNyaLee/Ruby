@@ -30,7 +30,7 @@ class Student_list
       raise IndexError, 'Index out of range'
     end
   end
-  def sort fullname
+  def sort 
     students_list = self.strategy.read_list_of_students.sort_by do |student|
       student.fullname
     end
