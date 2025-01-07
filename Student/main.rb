@@ -6,6 +6,7 @@ require_relative 'student_list_json'
 require_relative 'student_list_yaml'
 require_relative 'FileHandler'
 require_relative 'db/pg_client.rb'
+require_relative 'student_list_db'
 
 ann=Student.new(
   id: "14",
@@ -72,8 +73,10 @@ temp = sl.get_k_n_student_short_list(1, 2)
 temp.select(1)
 puts temp.get_data.count_of_rows
 
-client = PG_client.new
-
-client.exec("select * from students;").each do |row|
+sldb = Student_list_DB.new
+sldb.client.exec("select * from students").each do |row|
   puts row
 end
+
+puts sldb.get_student_short_count
+sldb.insert_student(dasha)

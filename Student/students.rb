@@ -4,7 +4,7 @@ class Student<Person
 
   include Comparable
   attr_accessor :surname, :name, :patronymic, :birthdate
-
+  attr_reader :number_phone, :email, :telegram
   #конструктор класса
   def initialize(id:nil,surname:,name:,patronymic:,number_phone:nil,telegram:nil,email:nil,git:nil,birthdate: nil)
     super(id: id, git: git,number_phone: number_phone, telegram: telegram, email: email)
@@ -18,6 +18,11 @@ class Student<Person
   def has_contact_and_git?
     @git!=nil && @email!=nil || @telegram!=nil || @number_phone!=nil
   end
+
+  def self.from_hash(hash)
+    self.new(**hash.transform_keys(&:to_sym))
+  end
+
 
   # Реализация сравнения студентов по дате рождения
   def <=>(other)
@@ -81,7 +86,7 @@ class Student<Person
       end  
     end  
     private
-    attr_reader :number_phone, :email, :telegram
+   
 end
 
 
