@@ -54,6 +54,14 @@ class Student<Person
     birthdate: self.birthdate, telegram: self.telegram, email: self.email, number_phone: self.number_phone, git: self.git }
   end
 
+  def ==(other)
+    number_phone == other.number_phone ||
+    telegram == other.telegram ||
+    email == other.email ||
+    git == other.git
+  end
+
+
   private
     def surname=(surname)
       if self.class.valid_name?(surname)

@@ -4,7 +4,7 @@ require_relative 'byniretree'
 require_relative 'data_list_student_short'
 require_relative 'student_list_json'
 require_relative 'student_list_yaml'
-require_relative 'FileHandler'
+require_relative 'Student_list'
 require_relative 'db/pg_client.rb'
 require_relative 'student_list_db'
 
@@ -38,37 +38,16 @@ puts dasha
 puts ann.birthdate
 puts dasha.birthdate
 
-puts ann.birthdate > dasha.birthdate
-
-tree = BinaryTree.new
-tree.add(ann)
-tree.add(dasha)
-
-tree.iterator.each do |node|
-	puts node.name
-end
-
-
-ann_short=Student_short.from_sting(id: ann.id, string: ann.get_info)
-puts "#4:"
-data_table = Data_table.new([[]])
-
-
-data_list = Data_list_student_short.new([ann_short])
-
-data_list.get_data
-puts data_list.row_from_attrs(ann_short)
-
-data_list.select(0)
-result =  data_list.get_data.get_by_index(0, 1)
-puts result
 
 
 
 
-sl = Student_list.new 
-sl.strategy = YAML_strategy.new('tudents_list.yaml')
 
+
+
+
+sl = Student_list.new(YAML_strategy.new('tudents_list.yaml'))
+sl.insert_student(ann)
 temp = sl.get_k_n_student_short_list(1, 2)
 temp.select(1)
 puts temp.get_data.count_of_rows
