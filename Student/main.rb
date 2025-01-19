@@ -46,15 +46,14 @@ puts dasha.birthdate
 
 
 
-sl = Student_list.new(YAML_strategy.new('tudents_list.yaml'))
-sl.insert_student(ann)
+sl = Student_list.new(YAML_strategy.new('./tudents_list.yaml'))
 temp = sl.get_k_n_student_short_list(1, 2)
-temp.select(1)
+puts temp.select(1)
 puts temp.get_data.count_of_rows
 
-sldb = Student_list_DB.new
-sldb.client.exec("select * from students").each do |row|
-  puts row
-end
+#sldb = Student_list_DB.new
+#sldb.client.exec("select * from students").each do |row|
+ # puts row
+#end
 
-puts sldb.get_student_short_count
+#puts sldb.get_student_short_count

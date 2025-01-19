@@ -1,5 +1,8 @@
 require_relative 'data_list_student_short'
 require_relative 'strategy'
+require './data_list'
+require './student_list_json'
+require_relative 'data_table'
 
 class Student_list
   attr_accessor :strategy, :students
@@ -24,18 +27,54 @@ class Student_list
       student.id == id
     end
   end
+  def count_of_rows
+    @list.size
+  end
+
+  # Метод для подсчёта количества столбцов
+  def count_of_columns
+    return 0 if @list.empty?
+    get_names.size
+  end
+
+  
   def get_k_n_student_short_list(k = 1, n = 20)
-    k = 1 if k < 1 
-    student_list = self.students
-    if student_list[k * n]
-      student_short_list = student_list[((k-1) * n)...(k*n)].map do |student|
+    puts "Начало get_k_n_student_short_list. k=#{k}, n=#{n}"
+    
+    student_count = self.students.size
+    puts "Количество студентов: #{student_count}"
+    
+    if student_count == 0
+      puts "Список студентов пуст!"
+      return nil
+    end
+    
+    max_index = [student_count, k*n].min
+    
+    puts "Максимальный индекс: #{max_index}"
+    
+    if max_index >= k * n
+      student_short_list = self.students[(k-1) * n...max_index].map do |student|
         Student_short.about_student(student)
       end
-      Data_list_student_short.new(student_short_list)
+      
+      puts "Создано объектов Student_short: #{student_short_list.size}"
+      
+      data_list = Data_list_student_short.new(student_short_list)
+      puts "Тип данных после создания Data_list_student_short: #{data_list.class}"
+      puts "Информация о данных (1):"
+      puts "Количество строк: #{data_list.count_of_rows}" if data_list
+      puts "Количество столбцов: #{data_list.count_of_columns}" if data_list
+   
+      
     else
-      raise IndexError, 'Index out of range'
+      puts "Недостаточно студентов для формирования списка. Требуется: #{k*n}, доступно: #{student_count}"
+      return nil
     end
   end
+  
+  
+  
   def sort 
     students_list = self.students.sort_by do |student|
       student.fullname

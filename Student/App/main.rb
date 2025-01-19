@@ -1,24 +1,14 @@
 require 'fox16'
+require_relative 'Student_list_view'
+
+
 include Fox
 
-class StudentApp < FXMainWindow
-  def initialize(app)
-    super(app, "Students", width: 1024, height: 768)
-    tabs = FXTabBook.new(self, opts: LAYOUT_FILL)
-    FXTabItem.new(tabs, "Student List", nil)
-    student_list = FXVerticalFrame.new(tabs, opts: LAYOUT_FILL)
-    FXTabItem.new(tabs, "Tab 2", nil)
-    tab_2 = FXVerticalFrame.new(tabs, LAYOUT_FILL)
-    FXTabItem.new(tabs, "Tab 3", nil)
-    tab_3 = FXVerticalFrame.new(tabs)
-    FXVerticalFrame.new(tabs, opts: LAYOUT_FILL)
-  end
-  def create
-    super
-    show(PLACEMENT_SCREEN)
-  end
-end
 app = FXApp.new
-sv = StudentApp.new(app)
+sl = Student_list.new(JSON_strategy.new('C:/Users/Mi/Document/ruby/Student/student_list.json'))
+students_list = Student_list.new(sl)
+puts students_list.get_k_n_student_short_list(1, 10).get_data.count_of_rows
+puts students_list.get_student_short_count
+StudentListView.new(app, students_list)
 app.create
 app.run

@@ -8,6 +8,16 @@ class Data_list
     self.index = 0
   end
   
+  def count_of_rows
+    @list.size
+  end
+
+  # Метод для подсчёта количества столбцов
+  def count_of_columns
+    return 0 if @list.empty?
+    get_names.size
+  end
+  
   def get_select(index)
     self.selected_indexes = list[index]
   end
@@ -27,16 +37,19 @@ class Data_list
 
   def get_data
     result_data = []
+    puts "Индексы для выбора: #{self.selected_indexes.inspect}"
+    puts "Список данных: #{self.list.inspect}"
+
     self.selected_indexes.each do |index|
       data = self.list[index]
       new_row = [self.index].concat(row_from_attrs(data))
       result_data << new_row 
-      self.index+=1
+      self.index += 1
     end
-    result_table = Data_table.new(result_data)
-  end
 
-  private
+    result_table = Data_table.new(result_data)
+    return result_table  # Возвращаем созданный объект
+end
 
   attr_accessor :selected_indexes, :index, :list
 
